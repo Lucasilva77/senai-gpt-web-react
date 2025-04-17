@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+
+padding: 0px;
+margin: 0px;
+box-sizing: border-box;
+
+}
+
+
+/* .Titulo{
+
+font-size: 76px;
+
+}
+
+#meutitulo{
+
+font-size: 76px;
+
+}
+
+/* {  */
+
+.page-container{
+
+    display: flex;
+    
+    }
+    
+    h1 {
+    
+    font-size: 76px;
+    font-family: "Inter";
+    font-weight: normal;
+    margin-bottom: 16px;
+    
+    } 
+    .login-container{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 50vw;
+    
+    
+    
+    
+    
+    }
+    .Logo {
+    
+    height: 60px;
+    
+    
+    }
+    
+    
+    .robo-image{
+       
+    background-image: url("../../assets/imgs/robo front.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    width: 50vw;
+    height: 100vh;
+    
+    
+    }
