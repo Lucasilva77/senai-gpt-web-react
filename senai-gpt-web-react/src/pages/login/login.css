@@ -1,72 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* .titulo {
 
-*{
+    font-size: 76px;
 
-padding: 0px;
-margin: 0px;
-box-sizing: border-box;
+} */
 
-}
+/* #meutitulo {
 
+    font-size: 76px;
 
-/* .Titulo{
+} */
 
-font-size: 76px;
-
-}
-
-#meutitulo{
-
-font-size: 76px;
-
-}
-
-/* {  */
-
-.page-container{
+.page-container {
 
     display: flex;
-    
-    }
-    
-    h1 {
-    
+
+}
+
+h1 {
+
     font-size: 76px;
     font-family: "Inter";
     font-weight: normal;
     margin-bottom: 16px;
-    
-    } 
-    .login-container{
-    
+
+}
+
+.login-container {
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 70vh;
+    flex-direction: column; /*deixa em colunas*/
+    align-items: center; /*horizontal*/
+    justify-content: center; /*horizontal*/
+    height: 100vh;
     width: 50vw;
-    
-    
-    
-    
-    
-    }
-    .Logo {
-    
+
+}
+
+.logo {
+
     height: 60px;
-    
-    
-    }
-    
-    
-    .robo-image{
-       
+
+}
+
+.robo-image {
+
     background-image: url("../../assets/imgs/robo front.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+
     width: 50vw;
     height: 100vh;
-    
-    
-    }
+
+}

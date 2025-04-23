@@ -1,62 +1,99 @@
 import "./login.css";
-
 import logo from "../../assets/imgs/Chat.png";
-
 import { useState } from "react";
 
 function Login() {
 
-  const [email, setEmail] = useState ();
-  const [password, setPassword] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-  const onLoginClick = async () => {
+    const onLoginClick = async () => {
 
-let response = await fetch ("https://senai-gpt-api.azurewebsites.net/login",)
+        let response = await fetch ("https://senai-gpt-api.azurewebsites.net/login", {
 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST", // Método que envia dados
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
 
+        });
 
-  }
+        if (response.ok == true) { // Verifica se a requisição deu certo.
 
-  return (
-    <>
-      <header></header>
+            alert("Login realizado com sucesso!");
 
-    <main className="page-container">
+            console.log(response);
 
+            let json = await response.json(); // Pegue o conteúdo da requisição.
 
-        <div className="robo-image">
+            let token = json.accessToken;
 
-        </div>
+            console.log("Token: " + token);
 
-        <div className="login-container">
+            // LOCALSTORAGE
+            localStorage.setItem("meuToken", token);
 
-          <img className="Logo" src={logo} alt="Logo do SenaiGPT." />
+            // COOKIES
+            // function setCookie(name, value, days) {
+            //     const date = new Date();
+            //     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // dias → ms
+            //     const expires = "expires=" + date.toUTCString();
+            //     document.cookie = `${name}=${value}; ${expires}; path=/`;
+            // }
+            // setCookie("meuToken", token, 7);
 
-          <h1
-            id="meutitulo"
-            className="titulo"
-          >Login</h1>
+            window.location.href = "/chat";
 
+        } else {
 
+            if (response.status == 401) {
 
-          <input className="input"value={email} onChange={Event => setEmail(Event.target.value)} type="email"placeholder="Insira o email" />
-          <input className="input"value={password} onChange={Event => setPassword(Event.target.value)} type="password" placeholder="Insira sua senha" />
+                alert("Credenciais incorretas. Tente novamente.");
 
-          <button class="btn" onClick={() => onLoginClick()}>Entrar</button>
+            } else {
+                
+                alert("Erro inesperado aconteceu, caso persista, contate os administradores.");
 
+            }
 
+        }
 
+    }
 
-        </div>
+    return (
+        <>
+            <header></header>
 
+            <main className="page-container">
 
+                <div className="robo-image">
+                </div>
 
-      </main>
+                <div className="login-container">
 
-      <footer></footer>
+                    <img className="logo" src={logo} alt="Logo do SenaiGPT." />
 
-    </>
-  )
+                    <h1
+                        id="meutitulo"
+                        className="titulo"
+                    >Login</h1>
+
+                    <input className="inpt" value={email} onChange={event => setEmail(event.target.value)} type="email" placeholder="Insira o e-mail" />
+                    <input className="inpt" value={password} onChange={event => setPassword(event.target.value)} type="password" placeholder="Insira a senha" />
+
+                    <button className="btn" onClick={() => onLoginClick()}>Entrar</button>
+
+                </div>
+
+            </main>
+
+            <footer></footer>
+        </>
+    )
 }
 
 export default Login;
