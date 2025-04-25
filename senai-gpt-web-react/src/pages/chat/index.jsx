@@ -1,7 +1,64 @@
 import "./chat.css";
 
 function chat() {
+    import "./chat.css"
+    import "../../assets/styles/global.css"
+    import { useEffect, useState } from "react";
+    
+    
+    
+    function Chat() {
+    
+          const [chats, setChats] = useState ([]);
+    
+        useEffect(() => {
+            //Exeecuta toda vez que a tela abre.
+          
+    
+            getChats();
+    
+    
+    
+    
+        }, []);
+    
+        const getChats = async () => {
+            //Arrow Function
+            let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+                headers: {
+                    "Authorization" : "Bearer " + localStorage.getItem("meuToken")
+                }
+    
+            });
+    
+            console.log(response);
+    
+            if (response.ok == true){ 
+    
+                let json = await response.json(); // Pegue as informacoes dos chats.
+                
+                setChats(json);
+    
+    
+                //
+            } else {
+    
+                if (response.status == 401) {
+    
+                    alert("Token Invalido. Faca login novamente.");
+                    window.location.href = "/login";
+                }
+            }
+    
+    
+    
+        }
 
+    const OnLogoutClick = () => {
+
+        localStorage.clear ();
+        window.location.href = "/login"
+    }
     return (
 
 <> 
@@ -39,7 +96,8 @@ function chat() {
                 <button className="btn-chat">Light mode</button>
                 <button className="btn-chat">My account</button>
                 <button className="btn-chat">Updates & FAQ</button>
-                <button className="btn-chat">Log out</button>
+                <button className="btn-chat" onClick={() => OnLogOutClick ()}>Log out</button>
+          
                 
             </div>
     
