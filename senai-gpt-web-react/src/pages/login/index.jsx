@@ -31,11 +31,13 @@ function Login() {
             let json = await response.json(); // Pegue o conteúdo da requisição.
 
             let token = json.accessToken;
+            let userId = json.user.id;
 
             console.log("Token: " + token);
 
             // LOCALSTORAGE
             localStorage.setItem("meuToken", token);
+            localStorage.setItem("meuId", userId);
 
             // COOKIES
             // function setCookie(name, value, days) {
@@ -75,7 +77,7 @@ function Login() {
 
                 <div className="login-container">
 
-                    <img className="logo" src={logo} alt="Logo do SenaiGPT." />
+                    <img className="login-logo" src={logo} alt="Logo do SenaiGPT." />
 
                     <h1
                         id="meutitulo"
