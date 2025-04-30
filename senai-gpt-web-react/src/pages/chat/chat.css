@@ -73,6 +73,8 @@
     align-items: center;
     padding: 20px;
     height: 70vh;
+    overflow: auto;
+
 
 }
 
