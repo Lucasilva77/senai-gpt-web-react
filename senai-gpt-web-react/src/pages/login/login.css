@@ -28,9 +28,12 @@ h1 {
 .login-container {
 
     display: flex;
-    flex-direction: column; /*deixa em colunas*/
-    align-items: center; /*horizontal*/
-    justify-content: center; /*horizontal*/
+    flex-direction: column;
+    /*deixa em colunas*/
+    align-items: center;
+    /*horizontal*/
+    justify-content: center;
+    /*horizontal*/
     height: 100vh;
     width: 50vw;
 
@@ -50,5 +53,35 @@ h1 {
 
     width: 50vw;
     height: 100vh;
+
+}
+
+@media screen and (max-width: 1366px) {
+
+    /*Desktop pequeno*/
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    /*tablet*/
+}
+
+@media screen and (max-width: 768px) {
+
+    /*celular*/
+
+    .robo-image {
+        display: none;
+    }
+
+    .login-container{
+
+        width: 100vw;
+
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url("../../assets/imgs/Rectangle 1.png");
+        background-size: cover;
+    }
+
 
 }

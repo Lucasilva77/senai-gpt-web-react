@@ -168,6 +168,13 @@ function Chat() {
     return (
         <>
             <div className="container">
+                <button
+            
+                className="btn-toggle-panel"
+                    >
+                    ☰
+                    
+                </button>
                 <header className="left-panel">
                     <div className="top">
                         <button className="btn-new-chat" onClick={() => novoChat()}>+ New chat</button>
