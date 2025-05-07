@@ -14,6 +14,8 @@ function Chat() {
     const [chatSelecionado, setChatSelecionado] = useState(null);
     const [userMessage, setUserMessage] = useState("");
 
+    const[isLeftpanelOpen , setIsLeftpanelOpen] = useState(false);
+
     useEffect(() => {
         // Executada toda vez que a tela abre.
         getChats();
@@ -175,7 +177,7 @@ function Chat() {
                     ☰
                     
                 </button>
-                <header className="left-panel">
+                <header className={`left-panel ${isLeftpanelOpen == true }`} >
                     <div className="top">
                         <button className="btn-new-chat" onClick={() => novoChat()}>+ New chat</button>
                         {chats.map(chat => (
