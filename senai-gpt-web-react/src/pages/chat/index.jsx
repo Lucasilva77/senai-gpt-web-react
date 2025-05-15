@@ -14,12 +14,21 @@ function Chat() {
     const [chatSelecionado, setChatSelecionado] = useState(null);
     const [userMessage, setUserMessage] = useState("");
 
-    const[isLeftpanelOpen , setIsLeftpanelOpen] = useState(false);
+    const [isLeftpanelOpen, setIsLeftpanelOpen] = useState(false);
+
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         // Executada toda vez que a tela abre.
         getChats();
+
+        let modoEscuro = localStorage.getItem("darkMode");
+        if (modoEscuro === "true") {
+            setDarkMode(true);
+            document.body.classList.add("dark-mode");
+        }
     }, []);
+
 
     const getChats = async () => {
         let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
@@ -45,6 +54,7 @@ function Chat() {
 
     const clickChat = (chat) => {
         setChatSelecionado(chat);
+        setIsLeftpanelOpen(false)
     }
 
     const chatGPT = async (message) => {
@@ -139,6 +149,9 @@ function Chat() {
             return;
         }
 
+
+setIsLeftpanelOpen(false)
+
         let userId = localStorage.getItem("meuId");
         let novoChatObj = {
             id: crypto.randomUUID(),
@@ -167,17 +180,33 @@ function Chat() {
         }
     }
 
+    const toggleDarkMode = () => {
+
+        setDarkMode(!darkMode); //inverter o valor do dark mode
+
+        if (darkMode == true) {
+
+            document.body.classList.remove("dark-mode");
+        } else {
+
+            document.body.classList.add("dark-mode");
+        }
+
+        localStorage.setItem("dark-mode", !darkMode);
+
+    }
+
     return (
         <>
             <div className="container">
                 <button
-            
-                className="btn-toggle-panel"
-                    >
+
+                    className="btn-toggle-panel"
+                >
                     ☰
-                    
+
                 </button>
-                <header className={`left-panel ${isLeftpanelOpen == true }`} >
+                <header className={`left-panel ${isLeftpanelOpen == true}`} >
                     <div className="top">
                         <button className="btn-new-chat" onClick={() => novoChat()}>+ New chat</button>
                         {chats.map(chat => (
@@ -244,6 +273,6 @@ function Chat() {
             </div>
         </>
     );
-};
+}
 
 export default Chat;
